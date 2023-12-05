@@ -6,7 +6,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.yaml.snakeyaml.constructor.ConstructorException;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/beer")
@@ -25,7 +31,7 @@ public class BeerController {
     }
 
     @PostMapping // POST - create new beer
-    public ResponseEntity<HttpHeaders> handleBeer(@RequestBody  BeerDto beerDto){
+    public ResponseEntity<HttpHeaders> handleBeer(@Valid @RequestBody  BeerDto beerDto){
         BeerDto saveDto = beerService.saveNewBeer(beerDto);
 
         HttpHeaders headers = new HttpHeaders();

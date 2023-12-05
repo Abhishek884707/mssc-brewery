@@ -1,11 +1,12 @@
 package org.mourya.msscbrewery.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.mourya.msscbrewery.web.model.BeerDto;
 import org.mourya.msscbrewery.web.model.CustomerDto;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-
+@Slf4j
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
@@ -19,7 +20,10 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public CustomerDto saveNewCustomer(CustomerDto customerDto) {
-        return null;
+        return CustomerDto.builder()
+                .id(UUID.randomUUID())
+                .name("Abhishek Kumar Mourya")
+                .build();
     }
 
     @Override
@@ -29,7 +33,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public void deleteCustomerById(UUID beerId) {
-
+        log.info("Deleting Customer .... !");
     }
 
 
